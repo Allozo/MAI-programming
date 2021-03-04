@@ -213,19 +213,49 @@ private:
 
 template<typename T>
 long my_test_id_table(IdTable<T> &id_table) {
-    vector<string> vec_id = {"e", "c", "g", "b", "b", "d", "f", "f", "f", "i", "a", "a", "h", "j"};
+    vector<string> vec_id = {"jYYOnnRMnROpZKMJLvPHEwjhpsuQbyobjkBgcDaVhUAgKeZQDYNtWeyqyQanGNMXgHtikq",
+                             "hypiSxwrZRwjLHJNkCAWFSmWGoCrnIbSmnOTVBTXpgXNYuCRWRnXkuRXysnMABRafzjIgH",
+                             "hypiSxwrZRwjLHJNkCAWFSmWGoCrnIbSmnOTVBTXpgXNYuCRWRnXkuRXysnMABRafzjIgH",
+                             "IfzEaoUGTUGWOHVpPOMkbiXhEmurLfxprUOEuDAKxpCmpnbCcoenShLxgIDaizDJCAcqOa",
+                             "GVBEEJvetqrIFcoctsHbpULkfuZzyqSjTfFifIOsgArGNuSaMmJNxUxRLgXMYYEwDYeZhq",
+                             "GsDBQzXeZvyHZlhBokAYnMEvXkOmzWnhPayvdsdmECRygCxcncpWbglsxqfYFCFfBmTepy",
+                             "fDZTNDFUwcBJBlIJkDisAtuSljoQUJVfEiotCvwfXnriKeKzZaGEYkEjextAwqwihAXXpG",
+                             "kTGAHdkXvZHsZDSWEnTrPiXTWYDaCuBxjcEcqNpOIlUEpLXAaMKsqPVNQfUcTLiDAbjgVO",
+                             "qOElohdNDiHgAIzueIplndDSrztwjBINPIeWVGjPnLThPscCgGoaINphvgcgIeWOvyaedX",
+                             "qffXmntyadqHQFcIGZLKVaZlxlfKCDqxGbEbMTdPtAqyJWVhuJIGoyoDbiLAEgMazCSjDk",
+                             "LVNcGHDtntdlaGtNHftxRVwMvDbWWSPPueCJaYULwRMkIPFoDANocjNbkxwfGVLwlpCEyA",
+                             "TJcyiJmxeEvaBZpJKtbCdGIBBDRnzfmQgEIeSAMwrDNZCzWunuwenryibJFLJJvdfZxHub",
+                             "qffXmntyadqHQFcIGZLKVaZlxlfKCDqxGbEbMTdPtAqyJWVhuJIGoyoDbiLAEgMazCSjDk",
+                             "LiETEqxIyEDLmPiNdaxtEovvmWJAKwpCrpOuzOabEYzOEfqdBgVhHjWUMhRZCFBYIRbaFr"};
 
     for (auto &id: vec_id) {
+        cout << "Add id: " << id << endl;
         id_table.add_id(id);
     }
 
-    assert(id_table.search_id("e") == true);
-    assert(id_table.search_id("s") == false);
-    assert(id_table.search_id("eet") == false);
-    assert(id_table.search_id("j") == true);
-    assert(id_table.search_id("4567") == false);
-    assert(id_table.search_id("b") == true);
-    assert(id_table.search_id("d") == true);
+    assert(id_table.search_id("jYYOnnRMnROpZKMJLvPHEwjhpsuQbyobjkBgcDaVhUAgKeZQDYNtWeyqyQanGNMXgHtikq") == true);
+    cout << "Id 'jYYOnnRMnROpZKMJLvPHEwjhpsuQbyobjkBgcDaVhUAgKeZQDYNtWeyqyQanGNMXgHtikq' detected in table" << endl;
+
+    assert(id_table.search_id("hypiSxwrZRwjLHJNkCAWFSmWGoCrnIbSmnOTVBTXpgXNYuCRWRnXkuRXysnMABRafzjIgH") == true);
+    cout << "Id 'hypiSxwrZRwjLHJNkCAWFSmWGoCrnIbSmnOTVBTXpgXNYuCRWRnXkuRXysnMABRafzjIgH' detected in table" << endl;
+
+    assert(id_table.search_id("LiETEqxIyEDLmPiNdaxtEovvmWJAKwpCrpOuzOabEYzOEfqdBgVhHjWUMhRZCFBYIRbaFr") == true);
+    cout << "Id 'LiETEqxIyEDLmPiNdaxtEovvmWJAKwpCrpOuzOabEYzOEfqdBgVhHjWUMhRZCFBYIRbaFr' detected in table" << endl;
+
+    assert(id_table.search_id("ikxBIPTTlRFCEAwIoAUIovbaGPmsrDTHvkNbRCFSyBdWcUbzcQNOReiYKJGOcrCHMdPnuE") == false);
+    cout << "Id 'ikxBIPTTlRFCEAwIoAUIovbaGPmsrDTHvkNbRCFSyBdWcUbzcQNOReiYKJGOcrCHMdPnuE' not detected in table" << endl;
+
+    assert(id_table.search_id("GTWbcIQTcHrQpjlHmRdFxMeUoSTXyFnSytAQPrIbIFdqjqXDKejPQLKWubBBwWZssrhWli") == false);
+    cout << "Id 'GTWbcIQTcHrQpjlHmRdFxMeUoSTXyFnSytAQPrIbIFdqjqXDKejPQLKWubBBwWZssrhWli' not detected in table" << endl;
+
+    assert(id_table.search_id("MmBTTzHpzZIQnzBElklQLKVxbaULpFMJzFBgsEqixQzPnGgvMdEWunWPOfaaAVWjOagqzh") == false);
+    cout << "Id 'MmBTTzHpzZIQnzBElklQLKVxbaULpFMJzFBgsEqixQzPnGgvMdEWunWPOfaaAVWjOagqzh' not detected in table" << endl;
+
+    assert(id_table.search_id("qffXmntyadqHQFcIGZLKVaZlxlfKCDqxGbEbMTdPtAqyJWVhuJIGoyoDbiLAEgMazCSjDk") == true);
+    cout << "Id 'qffXmntyadqHQFcIGZLKVaZlxlfKCDqxGbEbMTdPtAqyJWVhuJIGoyoDbiLAEgMazCSjDk' detected in table" << endl;
+
+    assert(id_table.search_id("LiETEqxIyEDLmPiNdaxtEovvmWJAKwpCrpOuzOabEYzOEfqdBgVhHjWUMhRZCFBYIRbaFr") == true);
+    cout << "Id 'LiETEqxIyEDLmPiNdaxtEovvmWJAKwpCrpOuzOabEYzOEfqdBgVhHjWUMhRZCFBYIRbaFr' detected in table" << endl;
 
     return id_table.get_count_operation();
 }
@@ -298,10 +328,10 @@ void speed_comparison_test() {
 
 int main() {
     // этот тест можно запустить, если нужно посмотреть, как оно может работать
-//    test_easy();
+    test_easy();
 
     // этот тест выведет сравнение Списка и Бинарного дерева
-    speed_comparison_test();
+//    speed_comparison_test();
 
     return 0;
 }
