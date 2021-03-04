@@ -234,23 +234,31 @@ long my_test_id_table(IdTable<T> &id_table) {
 void test_easy() {
     IdTableBinaryTree<string> idTableBinaryTree;
     long count_operation_for_binary_tree = my_test_id_table(idTableBinaryTree);
-    cout << "Колличество операций сравнения для дерева: " << count_operation_for_binary_tree << endl;
+    cout << "The number of comparison operations for the binary tree: " << count_operation_for_binary_tree << endl;
 
     IdTableList<string> idTableList;
     long count_operation_for_list = my_test_id_table(idTableList);
-    cout << "Колличество операций сравнения для списка: " << count_operation_for_list << endl;
+    cout << "The number of comparison operations for the list:        " << count_operation_for_list << endl;
 }
 
 template <typename T>
 long test_for_file(IdTable<T> &id_table, string &name_file) {
     ifstream file(name_file);
-    assert(file);
+
     string str;
+
+    if (!file) {
+        cout << "Error opening the file: " << name_file << endl;
+        return -1;
+    }
 
     while (file >> str) {
         id_table.add_id(str);
     }
+
     file.close();
+
+
     return id_table.get_count_operation();
 }
 
@@ -267,31 +275,32 @@ void speed_comparison_test() {
     vector<pair<long, long>> res;
 
     for (int i = 0; i < files.size(); i++) {
-        long res_1 = test_for_file(idTableList, files[i]);
-        long res_2 = test_for_file(idTableBinaryTree, files[i]);
+        string name_file = files[i];
 
+        long res_1 = test_for_file(idTableList, name_file);
+        long res_2 = test_for_file(idTableBinaryTree, name_file);
+
+        if (res_1 == -1 or res_2 == -1) {
+            continue;
+        }
         res.emplace_back(make_pair(res_1, res_2));
 
-        cout << "Структура:" << " Список. Колличество тестов: " << setw(15) <<  num[i] << ". Колличество операций сравнения: " << res_1 << endl;
-        cout << "Структура:" << " Бинарное дерево. Колличество тестов: " << setw(6) << num[i] << ". Колличество операций сравнения: " << res_2 << endl;
+        cout << "Struct: List.        Number of tests: " << setw(5) << num[i] << ". Number of comparison operations: " << res_1 << endl;
+        cout << "Struct: Binary tree. Number of tests: " << setw(5) << num[i] << ". Number of comparison operations: " << res_2 << endl;
     }
 
     cout << endl;
 
     for (auto & re : res) {
-        cout << "(колличество операций списка)/(колличество операций дерева) == " << static_cast<double>(re.first)/re.second << endl;
+        cout << "(List)/(Binary tree) == " << static_cast<double>(re.first)/re.second << endl;
     }
-
-    cout << endl;
-
-    cout << "По результатам теста можно сделать вывод, что колличество операций у списка намного больше колличесва операций у дерева." << endl;
 }
 
 int main() {
     // этот тест можно запустить, если нужно посмотреть, как оно может работать
-    //    test_easy();
+//    test_easy();
 
-    //
+    // этот тест выведет сравнение Списка и Бинарного дерева
     speed_comparison_test();
 
     return 0;
