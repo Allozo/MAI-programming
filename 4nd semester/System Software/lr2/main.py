@@ -6,14 +6,6 @@ def is_betta(letter):
     return letter.isalpha() or letter == '_'
 
 
-def is_gamma(letter):
-    return letter in ['a', 'b', 'c', 'd', 'e', 'f']
-
-
-def is_delta(letter):
-    return letter in ['or', 'and', 'xor']
-
-
 class AutoParser:
     def __init__(self, name_file):
         self.name_file = name_file
@@ -74,7 +66,9 @@ class AutoParser:
             # отберем идентификаторы
             elif is_betta(lexem[0]):
                 for symbol in lexem:
-                    if not (is_alpha(symbol) or is_betta(symbol) or symbol == '_'):
+                    if not (is_alpha(symbol) or
+                            is_betta(symbol) or
+                            symbol == '_'):
                         print(f'Ошибка разбора!')
                         print(f'Идентификатор {lexem} не принадлежит языку')
                         break
@@ -85,7 +79,8 @@ class AutoParser:
             # отберем числа
             elif is_alpha(lexem[0]):
                 for symbol in lexem:
-                    if not (is_alpha(symbol) or symbol in ['A', 'B', 'B', 'D', 'E', 'F']):
+                    if not (is_alpha(symbol) or
+                            symbol in ['A', 'B', 'B', 'D', 'E', 'F']):
                         print(f'Ошибка разбора!')
                         print(f'Число {lexem} не принадлежит языку')
                         break
